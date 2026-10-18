@@ -1,0 +1,85 @@
+name: Publish preview APK
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/publish-preview.yml']
+  workflow_dispatch:
+permissions:
+  contents: write
+  actions: read
+concurrency:
+  group: publish-preview-1-ci-2
+  cancel-in-progress: false
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    env:
+      GH_TOKEN: ${{ github.token }}
+      GH_REPO: ${{ github.repository }}
+      BUILD_RUN: '39135974527'
+      BUILD_SHA: '503692480a976e6953b9d72be0d5adcb629b8a01'
+      RELEASE_TAG: v0.1.0-preview.1-ci.2
+    steps:
+      - name: Verify successful source build
+        run: |
+          gh api "repos/$GH_REPO/actions/runs/$BUILD_RUN" > run.json
+          python3 - <<'PY'
+          import json, os
+          run = json.load(open('run.json'))
+          assert run['conclusion'] == 'success'
+          assert run['head_sha'] == os.environ['BUILD_SHA']
+          assert run['head_branch'] == 'main'
+          assert run['event'] == 'push'
+          assert run['repository']['full_name'] == os.environ['GH_REPO']
+          assert run['head_repository']['full_name'] == os.environ['GH_REPO']
+          assert run['path'] == '.github/workflows/android-preview.yml'
+          PY
+      - name: Download and verify the existing APK
+        run: |
+          gh run download "$BUILD_RUN" --repo "$GH_REPO" --name AndroidTavern-CI-arm64-2 --dir dist
+          python3 - <<'PY'
+          import hashlib
+          from pathlib import Path
+          root = Path('dist')
+          apk = root / 'SillyTavern-Pilot-0.1.0-preview.1-ci-arm64.apk'
+          checksums = {}
+          for line in (root / 'SHA256SUMS.txt').read_text().splitlines():
+              digest, name = line.split(maxsplit=1)
+              checksums[name.lstrip('*')] = digest
+          with apk.open('rb') as stream:
+              digest = hashlib.file_digest(stream, 'sha256').hexdigest()
+          assert digest == checksums[apk.name], 'APK checksum mismatch'
+          (root / 'SHA256SUMS.txt').write_text(digest + '  ' + apk.name + '\n')
+          print('Verified APK:', apk.name, apk.stat().st_size, 'bytes', digest)
+          PY
+      - name: Publish APK as a prerelease attachment
+        run: |
+          cat > notes.md <<'NOTES'
+          首个可直接下载 APK 的预发行版，复用已经通过 GitHub Actions 验证的 CI 第 2 次构建，没有重新编译或更换签名。
+
+          ## 下载与安装
+          在下方 Assets 下载 `SillyTavern-Pilot-0.1.0-preview.1-ci-arm64.apk`，手机直接打开安装，无需解压 ZIP。只支持 ARM64，Android 7.0 及以上。
+
+          桌面图标是「酒馆 CI」。首次打开会解压内置运行库，请保持前台等候。若已安装旧试用版，请先停止其服务，避免本地端口冲突。
+
+          ## 验证与限制
+          - 24 个运行库文件哈希与大小校验、19 项 JVM 断言、Android 编译和 APK v2/v3 签名验证通过。
+          - 尚待真机启动、酒馆助手/MVU、切后台和锁屏生成验收。
+          - 内置原版 SillyTavern 1.18.0 前端与 Node.js 后端；检查酒馆更新为只读，不会执行替换。
+          - 本包使用独立应用身份 `com.sillytavern.localpilot.ci`，不同于此前私有试用包。
+          - 本次 CI 签名为临时测试签名，后续其他构建不能保证覆盖升级。请先使用测试数据，卸载前导出备份。
+
+          源码提交：503692480a976e6953b9d72be0d5adcb629b8a01。
+          构建记录：https://github.com/TinMinL/AndroidTavern/actions/runs/39135974527
+          NOTES
+          if gh release view "$RELEASE_TAG" --repo "$GH_REPO" > /dev/null 2>&1; then
+            echo 'Release already exists; leaving its files unchanged.'
+            exit 0
+          fi
+          gh release create "$RELEASE_TAG" \
+            dist/SillyTavern-Pilot-0.1.0-preview.1-ci-arm64.apk \
+            dist/SHA256SUMS.txt \
+            --repo "$GH_REPO" --target "$BUILD_SHA" \
+            --prerelease --title 'AndroidTavern 0.1.0-preview.1 · CI 2' \
+            --notes-file notes.md
