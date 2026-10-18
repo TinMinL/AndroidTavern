@@ -1,0 +1,20 @@
+Note: Some input files use or override a deprecated API.
+Note: Recompile with -Xlint:deprecation for details.
+Verifies
+Verified using v1 scheme (JAR signing): false
+Verified using v2 scheme (APK Signature Scheme v2): true
+Verified using v3 scheme (APK Signature Scheme v3): true
+Verified using v3.1 scheme (APK Signature Scheme v3.1): false
+Verified using v4 scheme (APK Signature Scheme v4): false
+Verified for SourceStamp: false
+Number of signers: 1
+Signer #1 certificate DN: CN=SillyTavern Local Pilot Test, O=Private Development, C=ZZ
+Signer #1 certificate SHA-256 digest: ec437fe58c33c07d46cad47face3410d2ecac8e0436288396ae5023f0a737092
+Signer #1 certificate SHA-1 digest: 04298fda029680a02db7034571215995a650f833
+Signer #1 certificate MD5 digest: f1b806ea1c024edcd9783dcea0adf3e3
+Signer #1 key algorithm: RSA
+Signer #1 key size (bits): 2048
+Signer #1 public key SHA-256 digest: f008e4e00f7bd1927ecfe203083c4094796a835b51e1b6ff7fda00070215151d
+Signer #1 public key SHA-1 digest: 56a92e921a3744b663664305ea1e4c44d747356b
+Signer #1 public key MD5 digest: ad750934fb33dfc924b31d79160f08f1
+APK: /workspace/scratch/2f958bd5c2f0/SillyTavernAndroid/build/pilot/SillyTavern-Pilot-0.1.0-preview.1-arm64.apk

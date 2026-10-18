@@ -1,0 +1,8 @@
+{
+  "frontend_http": 200,
+  "session_ping": 204,
+  "worldbook_roundtrip": "pass",
+  "card_json_and_custom_fields": "pass",
+  "card_png_export": "pass",
+  "scope": "Host test only; Android, background generation and extensions remain unverified"
+}

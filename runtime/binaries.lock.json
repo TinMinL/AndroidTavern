@@ -1,0 +1,98 @@
+{
+  "app/src/main/assets/payload.zip": {
+    "sha256": "dbb1d0aa80df2ab2af24dfdccaea839a0b35beced2bee0afa5dc078a75f95e32",
+    "size": 135965910
+  },
+  "app/src/main/assets/npm.zip": {
+    "sha256": "aa94bb934f779dc408fcd3c18bd560f7bcc81d9108c5cdd2de355d2e3750918e",
+    "size": 3795481
+  },
+  "app/src/main/assets/git.zip": {
+    "sha256": "c33c9523b453912fc8b3a3b978175211e1f818ed2d7ffa3c86c1cd7b5e74b0d6",
+    "size": 123257
+  },
+  "app/src/main/jniLibs/arm64-v8a/libz.so": {
+    "sha256": "22ac211cb02eec6ac8d408fb7d3539654e92647bbc1bc2e23a9b62f0d8625008",
+    "size": 72880
+  },
+  "app/src/main/jniLibs/arm64-v8a/libnghttp2.so": {
+    "sha256": "54cb84a8d8a48829b5c9051d95feae7598a82f524b14dc6b7e3f4ecab0c5c7a5",
+    "size": 160600
+  },
+  "app/src/main/jniLibs/arm64-v8a/libngtcp2.so": {
+    "sha256": "c21394371208f6d76ea645f9f319b6cf9e5e27c575364278594f9bb2c3ac86be",
+    "size": 341944
+  },
+  "app/src/main/jniLibs/arm64-v8a/libssh2.so": {
+    "sha256": "6b3dabc656be37c4763bee37e1b38e173f70cb048bf83644f735af38041c563b",
+    "size": 248232
+  },
+  "app/src/main/jniLibs/arm64-v8a/libc++_shared.so": {
+    "sha256": "e09c2f45cf4cf8ae574f94b6c2650d99ead0d332d5396f6613f062a2d2d73540",
+    "size": 1374336
+  },
+  "app/src/main/jniLibs/arm64-v8a/libcrypto.so": {
+    "sha256": "3d14fa2c350fbe98a67dc6e04045fc2d019df6bab9e1021ee89d2777fd0a8679",
+    "size": 5205472
+  },
+  "app/src/main/jniLibs/arm64-v8a/libssl.so": {
+    "sha256": "1c7ca53a9048d3233ab90925ada4055360b74e630c29182cc3ded0ff0ecc19b9",
+    "size": 875304
+  },
+  "app/src/main/jniLibs/arm64-v8a/libgitremotehttps.so": {
+    "sha256": "15411b1a610d8ee735b4a0bdb67226724625bf5744b0ed7532c4969ca4a6297b",
+    "size": 2010824
+  },
+  "app/src/main/jniLibs/arm64-v8a/libicui18n.so": {
+    "sha256": "a11b66a30dd88ec4c4dd7bbcfea0ffb4eb2188150b9a8a5c68eff730242abf5d",
+    "size": 3358568
+  },
+  "app/src/main/jniLibs/arm64-v8a/libsqlite3.so": {
+    "sha256": "25769d8849934c574fd3ac674033d4cd41a04377030c31f937afd5a004af6a59",
+    "size": 1211232
+  },
+  "app/src/main/jniLibs/arm64-v8a/libnghttp3.so": {
+    "sha256": "e8db2a6c16b1ef4ba0138f05d61a9e591a380728298697f511c522020051b020",
+    "size": 155544
+  },
+  "app/src/main/jniLibs/arm64-v8a/libicudata.so": {
+    "sha256": "a11249b24fb9f02b1026cc2d79c50c747ec3c898f102b1a2aa36e9826af8673d",
+    "size": 33108832
+  },
+  "app/src/main/jniLibs/arm64-v8a/libiconv.so": {
+    "sha256": "53349c7a84ad06da53c3976754c742d6a79f3297562f0fbe61b7ee620f783667",
+    "size": 1082512
+  },
+  "app/src/main/jniLibs/arm64-v8a/libgitexec.so": {
+    "sha256": "de76d0bfafa12bdf55ea8589fab035fb39b6833667b333ad7e2fe9137483e1c9",
+    "size": 3562128
+  },
+  "app/src/main/jniLibs/arm64-v8a/libcurl.so": {
+    "sha256": "b591c814dd6265c50de0f6c0bd65df4523936630820afb1e34ccc983eaa0e129",
+    "size": 971776
+  },
+  "app/src/main/jniLibs/arm64-v8a/libnodeexec.so": {
+    "sha256": "9674209f8b43cffd166e3466a0ef63cfc3187b8fd197866c471a959e046a494d",
+    "size": 45318136
+  },
+  "app/src/main/jniLibs/arm64-v8a/libgitremotehttp.so": {
+    "sha256": "15411b1a610d8ee735b4a0bdb67226724625bf5744b0ed7532c4969ca4a6297b",
+    "size": 2010824
+  },
+  "app/src/main/jniLibs/arm64-v8a/libcares.so": {
+    "sha256": "68733ce8d4bb1bdc87d8ec550c58c70f3dcdb0f8c48d86b83235f536cb736e83",
+    "size": 256776
+  },
+  "app/src/main/jniLibs/arm64-v8a/libngtcp2_crypto_ossl.so": {
+    "sha256": "b2c9834fc5ced5f83860062391ff90d7f437c7d8e55ae2a9d27b042162b00a75",
+    "size": 44264
+  },
+  "app/src/main/jniLibs/arm64-v8a/libpcre2-8.so": {
+    "sha256": "a6bbeb410e269e50aee795b4fd1b11cbddb8b54959d1cfcd927b55b04dc19f5c",
+    "size": 489384
+  },
+  "app/src/main/jniLibs/arm64-v8a/libicuuc.so": {
+    "sha256": "81b42561fc18cebe756b36bdaa6418be90bad1f2c2fc5f87b3c7f552cce1b18c",
+    "size": 2029568
+  }
+}

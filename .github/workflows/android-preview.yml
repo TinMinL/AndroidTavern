@@ -1,0 +1,42 @@
+name: Android preview
+on:
+  push:
+    branches: [main]
+    paths: ['app/**', 'scripts/**', 'tests/**', 'runtime/binaries.lock.json', '.github/workflows/android-preview.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  build:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          persist-credentials: false
+      - uses: actions/setup-java@cf277c60eb25467037889841efdb72551f06f6c3
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Prepare pinned runtime
+        run: python3 scripts/prepare_runtime.py
+      - name: Verify host logic
+        run: |
+          mkdir -p build/host-tests
+          javac -d build/host-tests app/src/main/java/com/sillytavern/app/ArchivePaths.java app/src/main/java/com/sillytavern/app/StableVersion.java app/src/main/java/com/sillytavern/app/ServerReadiness.java tests/HostLogicTest.java
+          java -cp build/host-tests com.sillytavern.app.HostLogicTest
+      - name: Prepare Android SDK
+        run: sdkmanager 'platforms;android-34' 'build-tools;34.0.0'
+      - name: Build isolated CI test APK
+        run: |
+          python3 scripts/build_preview.py --sdk "$ANDROID_HOME" --jdk "$JAVA_HOME" --keystore "$RUNNER_TEMP/ci-test.jks" --ci
+          cd build/pilot
+          sha256sum *.apk > SHA256SUMS.txt
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: AndroidTavern-CI-arm64-${{ github.run_number }}
+          path: |
+            build/pilot/SillyTavern-Pilot-*-ci-arm64.apk
+            build/pilot/SHA256SUMS.txt
+          if-no-files-found: error
+          retention-days: 14

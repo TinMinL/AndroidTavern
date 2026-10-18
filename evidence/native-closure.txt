@@ -1,0 +1,27 @@
+libc++_shared.so: needs [libc.so, libm.so, libdl.so] OK
+libcares.so: needs [libc.so] OK
+libcrypto.so: needs [libdl.so, libc.so] OK
+libcurl.so: needs [libnghttp3.so, libngtcp2_crypto_ossl.so, libngtcp2.so, libnghttp2.so, libssh2.so, libssl.so, libcrypto.so, libz.so, libc.so] OK
+libgitexec.so: INTERP=/system/bin/linker64
+libgitexec.so: needs [libdl.so, libpcre2-8.so, libz.so, libiconv.so, libcrypto.so, libc.so] OK
+libgitremotehttp.so: INTERP=/system/bin/linker64
+libgitremotehttp.so: needs [libcurl.so, libdl.so, libpcre2-8.so, libz.so, libiconv.so, libcrypto.so, libc.so] OK
+libgitremotehttps.so: INTERP=/system/bin/linker64
+libgitremotehttps.so: needs [libcurl.so, libdl.so, libpcre2-8.so, libz.so, libiconv.so, libcrypto.so, libc.so] OK
+libiconv.so: needs [libc.so] OK
+libicudata.so: needs [] OK
+libicui18n.so: needs [libicuuc.so, libc.so, libm.so, libc++_shared.so, libdl.so] OK
+libicuuc.so: needs [libicudata.so, libc.so, libm.so, libc++_shared.so, libdl.so] OK
+libnghttp2.so: needs [libc.so] OK
+libnghttp3.so: needs [libc.so] OK
+libngtcp2.so: needs [libc.so] OK
+libngtcp2_crypto_ossl.so: needs [libngtcp2.so, libssl.so, libcrypto.so, libc.so] OK
+libnodeexec.so: INTERP=/system/bin/linker64
+libnodeexec.so: needs [libz.so, libcares.so, libsqlite3.so, libcrypto.so, libssl.so, libicui18n.so, libicuuc.so, libc.so, libm.so, libdl.so, libc++_shared.so] OK
+libpcre2-8.so: needs [libc.so] OK
+libsqlite3.so: needs [libz.so, libm.so, libdl.so, libc.so] OK
+libssh2.so: needs [libssl.so, libcrypto.so, libz.so, libc.so] OK
+libssl.so: needs [libcrypto.so, libc.so] OK
+libz.so: needs [libc.so] OK
+
+CLOSURE OK
