@@ -16,5 +16,5 @@ SillyTavern 官方对照：1.18.0，51ad27fb86d39a3daca3adaa970375c9670c12df。
 
 ## GitHub 接入
 仓库：TinMinL/AndroidTavern。当前提交整理 Android 源码、中文文档、固定运行库下载与校验脚本及 CI 构建配置；不含私有签名。
-现有 APK 的 Release 发布草稿见 RELEASE-NOTES.md；没有附件上传接口，不能据此认定已发布 APK。
+公开 CI 2 APK 已通过发布工作流上传到 GitHub Releases，可直接下载 .apk。原私有包未发布，两个包的签名和应用身份不同，详见 RELEASE-NOTES.md。
 CI 包使用独立的 .ci 应用身份和临时签名，用于空白测试，不是已有试用包的升级渠道。

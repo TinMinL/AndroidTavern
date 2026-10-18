@@ -1,4 +1,14 @@
-# 0.1.0-preview.1 发布草稿
+# 发布记录
+
+## 已发布：0.1.0-preview.1-ci.2
+
+[直接下载 APK](https://github.com/TinMinL/AndroidTavern/releases/download/v0.1.0-preview.1-ci.2/SillyTavern-Pilot-0.1.0-preview.1-ci-arm64.apk) · [Release](https://github.com/TinMinL/AndroidTavern/releases/tag/v0.1.0-preview.1-ci.2)
+
+发布复用构建 39135974527 的 APK，哈希校验通过。文件大小 179271830 字节，SHA-256 为 `1951137e4b21d086df67708c4e3e0dbfd952618d71226f2aa75ebcc99a099b7c`。
+
+应用身份为 `com.sillytavern.localpilot.ci`，使用该次构建的临时测试签名，尚待真机与扩展验收。后续其他 CI 构建不能保证覆盖升级。
+
+## 原私有试用包：发布草稿（未上传）
 
 首个 ARM64 试用版。原版 SillyTavern 1.18.0 前后端运行在手机本地，独立应用身份和端口，一键启动，保留文件导入导出及只读更新检查。
 
@@ -15,4 +25,4 @@
 
 在 GitHub Releases 新建 `v0.1.0-preview.1`，勾选预发行版，把上述 APK 作为附件，并使用本说明。上传前核对文件哈希。**不要上传私有源码续接 ZIP，它包含测试签名密钥。**
 
-目前 GitHub 连接没有 Release 附件上传接口，因此这个草稿不代表 APK 已经发布。
+原私有包仍未上传；公开 CI 包已通过 GitHub Actions 发布到 Releases。以上原私有包的文件名和哈希不适用于公开 CI 包。

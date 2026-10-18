@@ -6,7 +6,8 @@
 
 ## 下载与试用
 
-- [发布页](https://github.com/TinMinL/AndroidTavern/releases)：现有试用 APK 尚待上传。请以发布页实际附件为准。
+- **[直接下载 APK（约 179 MB）](https://github.com/TinMinL/AndroidTavern/releases/download/v0.1.0-preview.1-ci.2/SillyTavern-Pilot-0.1.0-preview.1-ci-arm64.apk)**：下载后打开安装，无需解压 ZIP。
+- [版本说明](https://github.com/TinMinL/AndroidTavern/releases/tag/v0.1.0-preview.1-ci.2)：本次发布的是 CI 2 测试包，桌面图标为「酒馆 CI」。
 - [安装和测试说明](TRYOUT.md)：首次启动、导入、扩展及切后台测试顺序。
 - [自动构建](https://github.com/TinMinL/AndroidTavern/actions)：成功运行后可在 Artifacts 下载 CI 测试包，需要登录 GitHub。CI 包与已有试用包使用不同应用 ID，避免覆盖已有试用数据。
 - [当前进度](NEXT.md) · [构建说明](BUILDING.md) · [反馈问题](https://github.com/TinMinL/AndroidTavern/issues)
@@ -27,7 +28,7 @@ SillyTavern 固定为 **1.18.0**。预设、角色卡、世界书、正则和扩
 | 系统结束进程后恢复回复 | 尚未实现 |
 | 酒馆安全升级、回退、APK 自动更新 | 尚未实现 |
 
-应用身份为 `com.sillytavern.localpilot`，首个实例端口为 `18080`。数据在应用私有目录；不会自动迁移 Termux 数据。**卸载会删除本应用的数据，请先导出备份。**
+原私有试用包身份为 `com.sillytavern.localpilot`，本次公开 CI 包为 `com.sillytavern.localpilot.ci`；首个实例都使用端口 `18080`，请先停止另一版本的服务再启动。数据在应用私有目录；不会自动迁移 Termux 数据。**卸载会删除本应用的数据，请先导出备份。**
 
 ## 源码导航
 
