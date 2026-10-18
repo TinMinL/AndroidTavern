@@ -51,7 +51,8 @@ def main():
     ns = 'http://schemas.android.com/apk/res/android'
     ET.register_namespace('android', ns)
     manifest = ET.parse(root / 'app/src/main/AndroidManifest.xml')
-    manifest.getroot().set('package', 'com.sillytavern.localpilot' + ('.ci' if args.ci else ''))
+    # CI 1 used an ephemeral signing key. Preview 2 must install alongside it.
+    manifest.getroot().set('package', 'com.sillytavern.localpilot' + ('.ci2' if args.ci else ''))
     for element in manifest.iter():
         for attr in ['name', 'targetActivity']:
             key = '{' + ns + '}' + attr
@@ -59,9 +60,9 @@ def main():
             if value.startswith('.'):
                 element.set(key, 'com.sillytavern.app' + value)
     if args.ci:
-        manifest.find('application').set('{' + ns + '}label', '酒馆 CI·管理')
+        manifest.find('application').set('{' + ns + '}label', '酒馆试用2·管理')
         for alias in manifest.findall('application/activity-alias'):
-            alias.set('{' + ns + '}label', '酒馆 CI ' + alias.get('{' + ns + '}name').split('Inst')[-1].replace('Alias', ''))
+            alias.set('{' + ns + '}label', '酒馆试用2·' + alias.get('{' + ns + '}name').split('Inst')[-1].replace('Alias', ''))
     manifest.write(out / 'AndroidManifest.xml', encoding='utf-8', xml_declaration=True)
     gen = out / 'generated'; gen.mkdir()
     classes = out / 'classes'; classes.mkdir()
@@ -70,8 +71,8 @@ def main():
     run([bt / 'aapt2', 'link', '-o', out / 'base.apk', '-I', android,
          '--manifest', out / 'AndroidManifest.xml', '--java', gen,
          '--custom-package', 'com.sillytavern.app', '--min-sdk-version', '24',
-         '--target-sdk-version', '34', '--version-code', '1',
-         '--version-name', '0.1.0-preview.1', out / 'resources.zip'])
+         '--target-sdk-version', '34', '--version-code', '2',
+         '--version-name', '0.1.0-preview.2', out / 'resources.zip'])
     java_files = sorted((root / 'app/src/main/java').rglob('*.java')) + list(gen.rglob('*.java'))
     run([jdk / 'bin/javac', '-encoding', 'UTF-8', '-source', '8', '-target', '8',
          '-bootclasspath', android, '-classpath', bt / 'core-lambda-stubs.jar',
@@ -97,7 +98,7 @@ def main():
              '-keypass', 'android', '-alias', 'pilot-test', '-keyalg', 'RSA', '-keysize', '2048',
              '-validity', '10000', '-dname', 'CN=SillyTavern Local Pilot Test, O=Private Development, C=ZZ'])
         key.chmod(0o600)
-    target = out / ('SillyTavern-Pilot-0.1.0-preview.1' + ('-ci' if args.ci else '') + '-arm64.apk')
+    target = out / ('SillyTavern-Pilot-0.1.0-preview.2' + ('-ci' if args.ci else '') + '-arm64.apk')
     run([bt / 'apksigner', 'sign', '--ks', key, '--ks-key-alias', 'pilot-test',
          '--ks-pass', 'pass:android', '--key-pass', 'pass:android', '--out', target, out / 'aligned.apk'])
     run([bt / 'apksigner', 'verify', '--verbose', '--print-certs', target])

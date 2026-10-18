@@ -28,6 +28,16 @@ public class HostLogicTest {
         check(ServerReadiness.matches("SillyTavern is listening on IPv4: \u001B[32m127.0.0.1:18080\u001B[0m", 18080), "colored startup");
         check(!ServerReadiness.matches("SillyTavern is listening on IPv4: 127.0.0.1:8000", 18080), "Termux is not this server");
         check(!ServerReadiness.matches("SillyTavern is listening on IPv4: 127.0.0.1:180800", 18080), "exact port boundary");
+        // server-main.js calls setWindowTitle() immediately before console.log(logListen).
+        // On Android/Linux util.js writes OSC 2, terminated by ESC-backslash, without a newline.
+        String startup = "SillyTavern is listening on IPv4: 127.0.0.1:18080";
+        String title = "\u001B]2;SillyTavern WebServer\u001B\\";
+        check(ServerReadiness.matches(title + startup, 18080), "real upstream OSC title prefix");
+        check(ServerReadiness.matches(title + "SillyTavern is listening on\u001B[32m IPv4: 127.0.0.1:18080\u001B[39m", 18080), "OSC title and ANSI colors");
+        check(ServerReadiness.matches("\u001B]0;SillyTavern\u0007" + startup, 18080), "BEL-terminated title");
+        check(!ServerReadiness.matches(title + startup, 18081), "OSC prefix preserves exact port check");
+        check(!ServerReadiness.matches("\u001B]2;" + startup + "\u001B\\unrelated output", 18080), "title text is not startup output");
+        check(!ServerReadiness.matches("\u001B]2;" + startup, 18080), "unterminated title is not readiness");
         File temp = Files.createTempDirectory("st-archive-test").toFile();
         File root = new File(temp, "data"); root.mkdir();
         check(ArchivePaths.resolve(root, "default-user/characters/test.png").getParentFile()
