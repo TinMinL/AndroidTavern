@@ -10,4 +10,4 @@
 
 此前已完成 Python 语法检查和 24 项实际运行库哈希与大小校验。原交付 APK 的 19 项 JVM 测试记录在 evidence/，CI 会再次运行这些断言。
 
-公开 CI 2 APK 已通过 GitHub Actions 发布到 Releases，下载与校验值见 RELEASE-NOTES.md。原私有包仍未上传；仓库不包含签名密钥，私有续接包不得上传。
+预览版 2 启动修复 APK 已通过 GitHub Actions 发布到 Releases，下载与校验值见 RELEASE-NOTES.md。原私有包仍未上传；仓库不包含签名密钥，私有续接包不得上传。

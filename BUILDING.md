@@ -16,7 +16,7 @@ python3 scripts/prepare_runtime.py --source /path/to/pinned-upstream
 python3 scripts/prepare_runtime.py --verify-only
 ```
 
-输出：`build/pilot/SillyTavern-Pilot-0.1.0-preview.1-arm64.apk`。
+输出：`build/pilot/SillyTavern-Pilot-0.1.0-preview.2-arm64.apk`。
 
 ## 签名
 
@@ -26,9 +26,9 @@ python3 scripts/prepare_runtime.py --verify-only
 
 ## GitHub Actions
 
-`Android preview` 在 `main` 源码提交或手动触发后运行：固定运行库校验、19 项主机逻辑断言、SDK 构建、APK 签名验证，然后上传测试 APK 和 SHA-256。
+`Android preview` 在 `main` 源码提交或手动触发后运行：固定运行库校验、25 项主机逻辑断言、SDK 构建、APK 签名验证，然后上传测试 APK 和 SHA-256。
 
-CI 包改用 `com.sillytavern.localpilot.ci`，图标增加 CI 标记，独立于已有私有试用版。每次运行使用临时测试密钥，因此不同运行的 CI 包不能直接覆盖升级；仅用于空白测试环境。临时密钥不会上传，CI 不会自动发布正式 Release。
+CI 包改用 `com.sillytavern.localpilot.ci2`，图标为「酒馆试用2」，独立于已有私有试用版。每次运行使用临时测试密钥，因此不同运行的 CI 包不能直接覆盖升级；仅用于空白测试环境。临时密钥不会上传，CI 不会自动发布正式 Release。
 
 CI 与原试用版仍使用相同本地端口；测试 CI 前，请先从原试用版管理页停止其服务，避免端口冲突。
 

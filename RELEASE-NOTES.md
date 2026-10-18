@@ -1,5 +1,16 @@
 # 发布记录
 
+## 已发布：0.1.0-preview.2（启动修复）
+
+[直接下载 APK](https://github.com/TinMinL/AndroidTavern/releases/download/v0.1.0-preview.2/SillyTavern-Pilot-0.1.0-preview.2-ci-arm64.apk)
+
+修复终端标题控制段导致启动成功日志无法被识别的问题。25 项逻辑测试、24 个运行库校验、APK 编译与 v2/v3 签名验证通过，尚待真机复验。
+
+文件 SHA-256：`61b7ec406e8b8268f8fb32e47939075fd6557ae40794e56a2cbc3549fec7453b`。
+
+图标「酒馆试用2·1」，应用身份 `com.sillytavern.localpilot.ci2`。先停止旧「酒馆 CI」服务再运行新版；无需卸载旧版，不自动迁移数据。
+
+
 ## 已发布：0.1.0-preview.1-ci.2
 
 [直接下载 APK](https://github.com/TinMinL/AndroidTavern/releases/download/v0.1.0-preview.1-ci.2/SillyTavern-Pilot-0.1.0-preview.1-ci-arm64.apk) · [Release](https://github.com/TinMinL/AndroidTavern/releases/tag/v0.1.0-preview.1-ci.2)
