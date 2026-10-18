@@ -25,8 +25,11 @@ jobs:
           mkdir -p build/host-tests
           javac -d build/host-tests app/src/main/java/com/sillytavern/app/ArchivePaths.java app/src/main/java/com/sillytavern/app/StableVersion.java app/src/main/java/com/sillytavern/app/ServerReadiness.java tests/HostLogicTest.java
           java -cp build/host-tests com.sillytavern.app.HostLogicTest
-      - name: Prepare Android SDK
-        run: sdkmanager 'platforms;android-34' 'build-tools;34.0.0'
+      - name: Verify preinstalled Android SDK 34
+        run: |
+          test -f "$ANDROID_HOME/platforms/android-34/android.jar"
+          test -x "$ANDROID_HOME/build-tools/34.0.0/aapt2"
+          test -x "$ANDROID_HOME/build-tools/34.0.0/apksigner"
       - name: Build isolated CI test APK
         run: |
           python3 scripts/build_preview.py --sdk "$ANDROID_HOME" --jdk "$JAVA_HOME" --keystore "$RUNNER_TEMP/ci-test.jks" --ci
